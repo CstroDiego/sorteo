@@ -28,14 +28,20 @@ class Producto extends BaseController
     {
         $productoModel = new ProductoModel();
         $producto = $productoModel->find($id);
-
-        print_r($producto);
     }
 
     public function delete($id)
     {
         $this->productoModel->delete($id);
         return redirect()->to(base_url() . '/producto');
+    }
+
+
+    public function filtro($nombre = '', $marca = '', $codigo = '')
+    {
+        $productos = $this->productoModel->filtro($nombre, $marca, $codigo);
+
+        return $this->response->setJSON($productos);
     }
 
 }

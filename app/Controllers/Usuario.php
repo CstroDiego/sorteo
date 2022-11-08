@@ -73,7 +73,7 @@ class Usuario extends BaseController
             'direccion' => $this->request->getPost('direccion'),
         ];
         $this->usuarioModel->update($id, $usuario);
-        return redirect()->to(base_url() . '/usuario?m=usuario $usuario[nombre], actualizado correctamente! ');
+        return redirect()->to(base_url() . '/usuario?m=usuario $usuario[nombre], actualizado correctamente! ', 200, 'success');
     }
 
     public function show($id): string

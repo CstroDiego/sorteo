@@ -2,29 +2,22 @@
 
 namespace App\Controllers;
 
+use JsonException;
 use PDO;
 
 class Home extends BaseController
 {
     public function index()
     {
-        
-        if (function_exists('mysqli_connect')) {
-            echo "mysqli is installed";
-        }else{
-            echo " Enable Mysqli support in your PHP installation ";
-            phpinfo();
-        }
-
-
+        return view('/admin/plantillas/general');
     }
 
-    public function cerrarsesion()
+    public function cerrarsesion(): \CodeIgniter\HTTP\RedirectResponse
     {
         return redirect()->to(base_url());
     }
 
-    public function saludar($nombre, $titulo, $color)
+    public function saludar($nombre, $titulo, $color): string
     {
         $data = [
             'nombre' => $nombre,
@@ -34,14 +27,17 @@ class Home extends BaseController
         return view('saludar', $data);
     }
 
-    public function login()
+    public function login(): \CodeIgniter\HTTP\RedirectResponse
     {
         session_start();
         $_SESSION['nombre'] = 'Juan';
         return redirect()->back();
     }
 
-    public function sorteos()
+    /**
+     * @throws JsonException
+     */
+    public function sorteos(): void
     {
         $sorteos = [];
         $sorteos[] = [
@@ -53,6 +49,6 @@ class Home extends BaseController
             'sorteos' => $sorteos
         ];
 
-        echo json_encode($data);
+        echo json_encode($data, JSON_THROW_ON_ERROR);
     }
 }
