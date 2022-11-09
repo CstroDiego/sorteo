@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://diegocastro.ddns.net';
+    public $baseURL = 'http://www.diegocastro.ddns.net/';
 
     /**
      * --------------------------------------------------------------------------
